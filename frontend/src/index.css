@@ -1,0 +1,533 @@
+/* ═══════════════════════════════════════════════════════════════
+   DEVOCIONAL DIARIO — CSS Global
+   Mobile-first, modo oscuro, tipografía serif para versículos
+═══════════════════════════════════════════════════════════════ */
+
+/* ── Variables de tema ────────────────────────────────────────── */
+:root {
+  --bg:         #f9f6f1;
+  --bg-card:    #ffffff;
+  --bg-muted:   #f2ede6;
+  --bg-panel:   #faf7f3;
+  --border:     #e8ddd0;
+  --text:       #2d2416;
+  --text-muted: #7a6a58;
+  --text-light: #a0917f;
+  --accent:     #8b5e3c;
+  --accent-bg:  #f5ede4;
+  --accent-hover: #7a5234;
+  --gold:       #c49a3c;
+  --green:      #4a7c5e;
+  --wa-green:   #25d366;
+  --wa-dark:    #128c7e;
+  --danger:     #b94040;
+  --shadow-sm:  0 1px 3px rgba(0,0,0,.06);
+  --shadow-md:  0 4px 16px rgba(0,0,0,.08);
+  --shadow-lg:  0 8px 32px rgba(0,0,0,.10);
+  --radius:     12px;
+  --radius-sm:  8px;
+  --font-body:  'Inter', system-ui, sans-serif;
+  --font-serif: 'Lora', Georgia, serif;
+  --transition: 200ms ease;
+}
+
+.dark, :root.dark {
+  --bg:         #111118;
+  --bg-card:    #1c1c26;
+  --bg-muted:   #16161f;
+  --bg-panel:   #18181f;
+  --border:     #2e2e3e;
+  --text:       #e8e4f0;
+  --text-muted: #9494b0;
+  --text-light: #6666880;
+  --accent:     #c49a6a;
+  --accent-bg:  #2a2218;
+  --accent-hover: #d4aa7a;
+  --gold:       #d4aa4a;
+  --green:      #5a9c74;
+  --shadow-sm:  0 1px 3px rgba(0,0,0,.3);
+  --shadow-md:  0 4px 16px rgba(0,0,0,.4);
+  --shadow-lg:  0 8px 32px rgba(0,0,0,.5);
+}
+
+/* ── Reset / Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  min-height: 100dvh;
+  transition: background var(--transition), color var(--transition);
+}
+
+/* ── Dark mode toggle ─────────────────────────────────────────── */
+.dark-toggle {
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  z-index: 100;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition);
+}
+.dark-toggle:hover { box-shadow: var(--shadow-md); }
+
+/* ── Layout ───────────────────────────────────────────────────── */
+.app-container {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 16px 80px;
+}
+
+/* ── Header ───────────────────────────────────────────────────── */
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 0 16px;
+}
+.header-left { display: flex; align-items: center; gap: 12px; }
+.app-logo { font-size: 32px; line-height: 1; }
+.app-title {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.2;
+}
+.app-fecha {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-transform: capitalize;
+  margin-top: 2px;
+}
+
+/* ── Streak badge ─────────────────────────────────────────────── */
+.streak-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--accent-bg);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 0.9rem;
+  color: var(--accent);
+  white-space: nowrap;
+}
+.streak-badge strong { font-size: 1rem; }
+.streak-label { font-size: 0.72rem; color: var(--text-muted); }
+
+/* ── Tabs ─────────────────────────────────────────────────────── */
+.tabs {
+  display: flex;
+  gap: 4px;
+  background: var(--bg-muted);
+  border-radius: var(--radius);
+  padding: 4px;
+  margin-bottom: 24px;
+}
+.tab {
+  flex: 1;
+  background: transparent;
+  border: none;
+  border-radius: calc(var(--radius) - 4px);
+  padding: 10px 8px;
+  font-size: 0.85rem;
+  font-family: var(--font-body);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+.tab--active {
+  background: var(--bg-card);
+  color: var(--accent);
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+}
+
+/* ── Sección pasaje del día ───────────────────────────────────── */
+.pasaje-del-dia {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-sm);
+}
+.pasaje-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.categoria-emoji { font-size: 22px; margin-top: 2px; }
+.categoria-label { font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .06em; }
+.pasaje-referencia { font-size: 0.95rem; font-weight: 600; color: var(--accent); margin-top: 2px; }
+.pasaje-texto {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--text);
+  line-height: 1.7;
+  border-left: 3px solid var(--accent);
+  padding-left: 14px;
+  margin: 0;
+}
+
+/* ── Controles ────────────────────────────────────────────────── */
+.controles {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.control-group { display: flex; flex-direction: column; gap: 8px; }
+.control-label { font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .06em; font-weight: 500; }
+.control-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+.pill {
+  background: var(--bg-muted);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  text-transform: capitalize;
+  transition: all var(--transition);
+}
+.pill--active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  font-weight: 600;
+}
+.pill:hover:not(.pill--active) { border-color: var(--accent); color: var(--accent); }
+
+/* ── Botón generar ────────────────────────────────────────────── */
+.btn-generar {
+  width: 100%;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  padding: 15px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: var(--font-body);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 20px;
+  transition: background var(--transition), transform var(--transition);
+}
+.btn-generar:hover:not(:disabled) { background: var(--accent-hover); transform: translateY(-1px); }
+.btn-generar:disabled { opacity: .7; cursor: not-allowed; }
+.btn-generar--loading { background: var(--text-muted); }
+
+/* ── Spinner ──────────────────────────────────────────────────── */
+.spinner {
+  width: 18px; height: 18px;
+  border: 2px solid rgba(255,255,255,.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin .8s linear infinite;
+  flex-shrink: 0;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Error banner ─────────────────────────────────────────────── */
+.error-banner {
+  background: #fff3f3;
+  border: 1px solid #f0c0c0;
+  color: var(--danger);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.88rem;
+}
+.dark .error-banner { background: #2a1515; border-color: #5a2a2a; color: #ff9090; }
+.btn-retry { background: none; border: 1px solid currentColor; border-radius: 6px; padding: 4px 12px; cursor: pointer; font-size: 0.82rem; color: inherit; }
+
+/* ── Tarjeta devocional ───────────────────────────────────────── */
+.devocional-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-md);
+  animation: fadeUp .4s ease both;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.devocional-titulo {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1.3;
+  margin-bottom: 20px;
+}
+
+.devocional-versiculo-wrap {
+  background: var(--accent-bg);
+  border-radius: var(--radius-sm);
+  padding: 18px 20px;
+  margin-bottom: 24px;
+}
+.devocional-versiculo {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--text);
+  line-height: 1.75;
+  margin: 0 0 8px;
+}
+.devocional-referencia {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--accent);
+  font-style: normal;
+  font-weight: 600;
+  text-align: right;
+}
+
+.devocional-seccion { margin-bottom: 22px; }
+.seccion-titulo {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  margin-bottom: 8px;
+}
+.seccion-texto {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--text);
+}
+
+.devocional-oracion { background: var(--bg-muted); border-radius: var(--radius-sm); padding: 16px 18px; }
+.oracion-texto { font-style: italic; color: var(--text-muted); }
+
+.devocional-pregunta {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: var(--bg-panel);
+  border-left: 3px solid var(--gold);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 14px 16px;
+  margin-bottom: 24px;
+}
+.pregunta-icon { font-size: 1.1rem; flex-shrink: 0; }
+.pregunta-texto { font-size: 0.92rem; color: var(--text); font-weight: 500; line-height: 1.6; }
+
+/* ── Acciones de la tarjeta ───────────────────────────────────── */
+.acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  border-top: 1px solid var(--border);
+  padding-top: 18px;
+}
+.btn-accion {
+  background: var(--bg-muted);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 8px 14px;
+  font-size: 0.82rem;
+  font-family: var(--font-body);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.btn-accion:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-bg); }
+.btn-wa { color: var(--wa-dark); border-color: #b2dfdb; background: #e8f5e9; }
+.btn-wa:hover { background: #c8e6c9; border-color: var(--wa-dark); }
+.dark .btn-wa { background: #0a2a22; border-color: #1a5a46; color: #5ecb90; }
+.btn-regenerar { margin-left: auto; }
+
+/* ── Panel WhatsApp ───────────────────────────────────────────── */
+.wa-panel-wrap {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+.wa-panel-toggle {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text);
+  font-family: var(--font-body);
+  transition: background var(--transition);
+}
+.wa-panel-toggle:hover { background: var(--bg-muted); }
+.chevron { font-size: 1.1rem; transition: transform var(--transition); display: inline-block; }
+.chevron--up { transform: rotate(180deg); }
+
+.wa-panel {
+  padding: 0 20px 20px;
+  border-top: 1px solid var(--border);
+  animation: fadeDown .2s ease both;
+}
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.wa-desc { font-size: 0.82rem; color: var(--text-muted); margin: 14px 0 18px; line-height: 1.55; }
+
+.wa-form { display: flex; flex-direction: column; gap: 14px; }
+.wa-label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+.wa-label--checkbox {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  cursor: pointer;
+}
+.wa-input {
+  background: var(--bg-muted);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  font-size: 0.9rem;
+  color: var(--text);
+  font-family: var(--font-body);
+  width: 100%;
+  transition: border-color var(--transition);
+}
+.wa-input:focus { outline: none; border-color: var(--accent); }
+.wa-error { font-size: 0.82rem; color: var(--danger); }
+.wa-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
+.btn-wa-save {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 10px 18px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: background var(--transition);
+}
+.btn-wa-save:hover:not(:disabled) { background: var(--accent-hover); }
+.btn-wa-save:disabled { opacity: .65; cursor: not-allowed; }
+.btn-wa-send {
+  background: var(--wa-green);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 10px 18px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: background var(--transition);
+}
+.btn-wa-send:hover { background: var(--wa-dark); }
+
+/* ── Historial ────────────────────────────────────────────────── */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+.stat-num {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--accent);
+  font-family: var(--font-serif);
+  line-height: 1;
+}
+.stat-label { font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; text-transform: uppercase; letter-spacing: .05em; }
+
+.historial-empty {
+  text-align: center;
+  padding: 48px 24px;
+  color: var(--text-muted);
+}
+.btn-link {
+  background: none; border: none; color: var(--accent); font-size: 0.9rem;
+  cursor: pointer; text-decoration: underline; margin-top: 8px; font-family: var(--font-body);
+}
+
+.historial-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.historial-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition);
+}
+.historial-item:hover { box-shadow: var(--shadow-md); }
+.historial-item-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+.historial-fecha { font-size: 0.78rem; font-weight: 600; color: var(--text-muted); text-transform: capitalize; }
+.historial-categoria { font-size: 0.72rem; color: var(--text-light); }
+.historial-titulo { font-family: var(--font-serif); font-size: 0.95rem; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+.historial-ref { font-size: 0.78rem; color: var(--accent); }
+
+/* ── Responsive ───────────────────────────────────────────────── */
+@media (min-width: 480px) {
+  .app-container { padding: 0 24px 80px; }
+  .devocional-card { padding: 32px 28px; }
+  .devocional-titulo { font-size: 1.5rem; }
+}
+@media (min-width: 680px) {
+  .app-container { padding: 0 0 80px; }
+  .controles { flex-direction: row; }
+  .control-group { flex: 1; }
+}

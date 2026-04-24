@@ -1,0 +1,16 @@
+{
+  "installCommand": "npm install && cd frontend && npm install",
+  "buildCommand": "cd frontend && npm run build",
+  "outputDirectory": "frontend/dist",
+  "crons": [
+    {
+      "path": "/api/cron",
+      "schedule": "0 * * * *"
+    }
+  ],
+  "functions": {
+    "api/*.ts": {
+      "maxDuration": 30
+    }
+  }
+}

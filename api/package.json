@@ -1,0 +1,11 @@
+{
+  "name": "devocional-api",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@vercel/node": "^4.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.3"
+  }
+}

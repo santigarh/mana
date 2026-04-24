@@ -1,0 +1,18 @@
+{
+  "name": "devocional-diario",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build"
+  },
+  "dependencies": {
+    "@vercel/node": "^4.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.3"
+  }
+}

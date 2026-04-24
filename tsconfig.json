@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "CommonJS",
+    "lib": ["ES2020", "DOM"],
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "outDir": "dist"
+  },
+  "include": [
+    "api/**/*",
+    "frontend/src/features/devocional/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "frontend/node_modules",
+    "frontend/src/main.tsx",
+    "frontend/src/App.tsx",
+    "dist"
+  ]
+}
