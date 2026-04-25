@@ -4,8 +4,8 @@
 // ═══════════════════════════════════════════════════════════════
 
 import type { VercelRequest, VercelResponse } from '@vercel/node'
-import { construirPrompt } from '../frontend/src/features/devocional/lib/prompt'
-import type { DevocionalInput } from '../frontend/src/features/devocional/types'
+import { construirPrompt } from '../shared/devocional/prompt'
+import type { DevocionalInput } from '../shared/devocional/types'
 
 const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions'
 // Modelo gratuito más rápido de Groq: llama-3.1-8b-instant

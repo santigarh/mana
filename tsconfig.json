@@ -12,7 +12,7 @@
   },
   "include": [
     "api/**/*",
-    "frontend/src/features/devocional/**/*"
+    "shared/**/*"
   ],
   "exclude": [
     "node_modules",

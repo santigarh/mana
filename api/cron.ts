@@ -5,10 +5,10 @@
 // ═══════════════════════════════════════════════════════════════
 
 import type { VercelRequest, VercelResponse } from '@vercel/node'
-import { construirPrompt, formatearParaWhatsApp } from '../frontend/src/features/devocional/lib/prompt'
-import { seleccionarPasajeDelDia } from '../frontend/src/features/devocional/lib/selector'
-import { PASAJES } from '../frontend/src/features/devocional/lib/pasajes'
-import type { DevocionalInput } from '../frontend/src/features/devocional/types'
+import { construirPrompt, formatearParaWhatsApp } from '../shared/devocional/prompt'
+import { seleccionarPasajeDelDia } from '../shared/devocional/selector'
+import { PASAJES } from '../shared/devocional/pasajes'
+import type { DevocionalInput } from '../shared/devocional/types'
 
 const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions'
 const GROQ_MODEL = 'llama-3.1-8b-instant'
